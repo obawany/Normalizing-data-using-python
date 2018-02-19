@@ -64,33 +64,40 @@ import io
 # 	data[i] = data[i]/datasum
 
 with open ('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.normalized.txt', 'w') as g, open('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt') as f:
-	
+
+	#to sum all the values of that file/experiment 	
 	sumofvalues = 0
 	numberofvalues = 0
 
+	#split line by line for each gene/miRNA
 	content = f.read().splitlines()
 
+	#this for loop is for getting the sum mainly 
 	for line in content:
 		contentlinebyline = line.split(" ")
 		#print (line)
-		values = line.split("\t")[1]
-		#print(values)
-		value = int(values)
-#		print(value)
-#		print(line)
-		sumofvalues = sumofvalues + value
-		numberofvalues = numberofvalues + 1
-		#print(contentlinebyline)
-		#print(contentlinebyline[1])
-		#values = contentlinebyline.split("\t")[1]
-		#print(values)
+		#if statement to ignore lines with extra data and headings
+		if (line[0] == 'E'):
+			values = line.split("\t")[1]
+			#print(values)
+			value = int(values)
+#			print(value)
+#			print(line)
+			sumofvalues = sumofvalues + value
+			numberofvalues = numberofvalues + 1
+			#print(contentlinebyline)
+			#print(contentlinebyline[1])
+			#values = contentlinebyline.split("\t")[1]
+			#print(values)
 
-		# line['A'], line['B'] = line['AB'].str.split(' ', 1).str
-		# print(lin)
+			# line['A'], line['B'] = line['AB'].str.split(' ', 1).str
+			# print(lin)
 #	print(sumofvalues)
 
+	#this sum is for normalizing, concatenating and creating new file
 	for line in content:
 		contentlinebyline = line.split(" ")
+		#if statement to ignore lines with extra data and headings
 		if (line[0] == 'E'):
 			values = line.split("\t")[1]
 			value = int(values)
