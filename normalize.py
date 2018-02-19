@@ -4,12 +4,21 @@ import csv
 import logging
 import os
 import io
+#from os import listdir
+#from os.path import isfile, join
+import sys
 
 # #data = np.loadtxt('.txt')
 
 # #let me set a path for the file 
-# path = '/Users/obawany/Downloads/GDC_Downloads/Adrenal Gland/female/0a0a8e16-d3af-4e98-802e-761966588e4f/'
+path = '/Users/obawany/Downloads/GDC_Downloads/'
+downloads = os.listdir(path)
 
+for cancertype in downloads:
+	male_female = os.listdir(path + cancertype)
+	print(cancertype)
+	for male_female in cancertype:
+		print(male_female)
 # #data = pd.read_csv("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt", sep=" ", header = None)
 # #data.columns = ["a"]
 # #values = data.pop('a')
@@ -62,6 +71,7 @@ import io
 
 # for i in range(1, len(data)):
 # 	data[i] = data[i]/datasum
+#for n in sys.argv
 
 with open ('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.normalized.txt', 'w') as g, open('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt') as f:
 
