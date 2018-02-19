@@ -3,57 +3,106 @@ import pandas as pd
 import csv
 import logging
 import os
+import io
+
+# #data = np.loadtxt('.txt')
+
+# #let me set a path for the file 
+# path = '/Users/obawany/Downloads/GDC_Downloads/Adrenal Gland/female/0a0a8e16-d3af-4e98-802e-761966588e4f/'
+
+# #data = pd.read_csv("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt", sep=" ", header = None)
+# #data.columns = ["a"]
+# #values = data.pop('a')
+
+# data = np.loadtxt("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt", usecols=(1,))
+# #data = data/data[0]
+
+# data1 = np.loadtxt("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/test.txt", usecols=(1,))
+# #data.sum(axis=0)
+
+# #df = pd.DataFrame((9), reshape(3,3))
+
+# #Count_row=data.shape[0]
+# #logging.info(Count_row)
+# #logging.info(data.index)
+# #write(Count_row)
+# #len(df.index)
+
+# #len(data.index)
+
+# datasum1 = 0
+
+# for i in range(0, len(data1) ):
+# 	datasum1 = datasum1 + data1[i]
+
+# for i in range(0, len(data1)):
+# 	data1[i] = data1[i]/datasum1
+
+# #datatowrite = np.genfromtxt(fname='/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/test.txt')
+# #s=datatowrite[:,1]
+# ''''
+# with open("test.csv", "wa") as f:
+# 	f.write ("Letter\tNumber\tNormalized\n")
+# 	for k,v,x in 
+# '''
+# file = open("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/test.txt", "r").readline
+# output = ["%s \t %s \t %s" % (item.strip(), 1) for item in file]
+# f = open("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/test.txt", "w")
+# f.write("\n".join(output))
+# f.close()
+# #int n = data.length()
+# #data1 = data1/data1[1]
+# np.savetxt('testnew.txt', data1)
+
+# datasum = 0
 
 
-#data = np.loadtxt('.txt')
+# for i in range(1, len(data) ):
+# 	datasum = datasum + data[i]
 
-#let me set a path for the file 
-path = '/Users/obawany/Downloads/GDC_Downloads/Adrenal Gland/female/0a0a8e16-d3af-4e98-802e-761966588e4f/'
+# for i in range(1, len(data)):
+# 	data[i] = data[i]/datasum
 
-#data = pd.read_csv("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt", sep=" ", header = None)
-#data.columns = ["a"]
-#values = data.pop('a')
+with open ('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.normalized.txt', 'w') as g, open('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt') as f:
+	
+	sumofvalues = 0
+	numberofvalues = 0
 
-data = np.loadtxt("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt", usecols=(1,))
-#data = data/data[0]
+	content = f.read().splitlines()
 
-data1 = np.loadtxt("/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python/test.txt", usecols=(1,))
-#data.sum(axis=0)
+	for line in content:
+		contentlinebyline = line.split(" ")
+		#print (line)
+		values = line.split("\t")[1]
+		#print(values)
+		value = int(values)
+#		print(value)
+#		print(line)
+		sumofvalues = sumofvalues + value
+		numberofvalues = numberofvalues + 1
+		#print(contentlinebyline)
+		#print(contentlinebyline[1])
+		#values = contentlinebyline.split("\t")[1]
+		#print(values)
 
-#df = pd.DataFrame((9), reshape(3,3))
+		# line['A'], line['B'] = line['AB'].str.split(' ', 1).str
+		# print(lin)
+#	print(sumofvalues)
 
-#Count_row=data.shape[0]
-#logging.info(Count_row)
-#logging.info(data.index)
-#write(Count_row)
-#len(df.index)
-
-#len(data.index)
-
-datasum1 = 0
-
-for i in range(0, len(data1) ):
-	datasum1 = datasum1 + data1[i]
-
-for i in range(0, len(data1)):
-	data1[i] = data1[i]/datasum1
-
-
-#int n = data.length()
-#data1 = data1/data1[1]
-np.savetxt('testnew.txt', data1)
-
-datasum = 0
-
-
-for i in range(0, len(data) ):
-	datasum = datasum + data[i]
-
-for i in range(0, len(data)):
-	data[i] = data[i]/datasum
-
-
+	for line in content:
+		contentlinebyline = line.split(" ")
+		if (line[0] == 'E'):
+			values = line.split("\t")[1]
+			value = int(values)
+		#	print(value)
+			normalizedvalue = value/sumofvalues
+			line = line + "\t" + str(normalizedvalue)
+			g.write(line + ("\n"))
+		#print(normalizedvalue)
+		print(line)
 
 
 #data = data/data[600]
-np.savetxt('new.txt', data)
+#np.savetxt('new.txt', data)
+
+
