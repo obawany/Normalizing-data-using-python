@@ -39,6 +39,7 @@ for cancertype in cancertypes:
 #						print(files_in_exp)
 						#print(files_in_exp[0])
 						file_name = files_in_exp[0]
+						#print(file_name)
 						if file_name.endswith('.counts.txt'):
 							file_path = experiment_path + "/" + file_name
 						#	print(file_path)
@@ -105,7 +106,7 @@ for cancertype in cancertypes:
 # 	data[i] = data[i]/datasum
 #for n in sys.argv
 
-							with open (file_name + '.normalized.txt', 'w') as g, open(file_path, 'r') as f:
+							with open (experiment_path + file_name + '.normalized.txt', 'w') as g, open(file_path, 'r') as f:
 
 								#to sum all the values of that file/experiment 	
 								sumofvalues = 0
@@ -116,8 +117,10 @@ for cancertype in cancertypes:
 
 								#this for loop is for getting the sum mainly 
 								for line in content:
+									#print(file_path)
 									contentlinebyline = line.split(" ")
 									#print (line)
+									#print(line)
 									#if statement to ignore lines with extra data and headings
 									if (line[0] == 'E'):
 										values = line.split("\t")[1]
@@ -143,11 +146,16 @@ for cancertype in cancertypes:
 									if (line[0] == 'E'):
 										values = line.split("\t")[1]
 										value = int(values)
+									#	print(line)
 									#	print(value)
 										normalizedvalue = value/sumofvalues
 										line = line + "\t" + str(normalizedvalue)
 										g.write(line + ("\n"))
-									#print(normalizedvalue)
+									#	print(line)
+							f.close()
+							g.close()
+
+							#		print(normalizedvalue)
 							#		print(line)
 
 

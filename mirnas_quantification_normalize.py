@@ -39,7 +39,8 @@ for cancertype in cancertypes:
 #						print(files_in_exp)
 						#print(files_in_exp[0])
 						file_name = files_in_exp[0]
-						if file_name.endswith('.counts.txt'):
+						#print(file_name)
+						if file_name.endswith('.quantification.txt'):
 							file_path = experiment_path + "/" + file_name
 						#	print(file_path)
 			# for gender_folder in path_to_male_female:
@@ -105,7 +106,7 @@ for cancertype in cancertypes:
 # 	data[i] = data[i]/datasum
 #for n in sys.argv
 
-							with open ('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.normalized.txt', 'w') as g, open('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt') as f:
+							with open (experiment_path + file_name + '.normalized.txt', 'w') as g, open(file_path, 'r') as f:
 
 								#to sum all the values of that file/experiment 	
 								sumofvalues = 0
@@ -116,10 +117,12 @@ for cancertype in cancertypes:
 
 								#this for loop is for getting the sum mainly 
 								for line in content:
+									#print(file_path)
 									contentlinebyline = line.split(" ")
 									#print (line)
+									#print(line)
 									#if statement to ignore lines with extra data and headings
-									if (line[0] == 'E'):
+									if (line[0] == 'h'):
 										values = line.split("\t")[1]
 										#print(values)
 										value = int(values)
@@ -140,18 +143,21 @@ for cancertype in cancertypes:
 								for line in content:
 									contentlinebyline = line.split(" ")
 									#if statement to ignore lines with extra data and headings
-									if (line[0] == 'E'):
+									if (line[0] == 'h'):
 										values = line.split("\t")[1]
 										value = int(values)
+									#	print(line)
 									#	print(value)
 										normalizedvalue = value/sumofvalues
 										line = line + "\t" + str(normalizedvalue)
 										g.write(line + ("\n"))
-									#print(normalizedvalue)
+									#	print(line)
+							f.close()
+							g.close()
+
+							#		print(normalizedvalue)
 							#		print(line)
 
 
 							#data = data/data[600]
 							#np.savetxt('new.txt', data)
-
-
