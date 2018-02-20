@@ -105,7 +105,7 @@ for cancertype in cancertypes:
 # 	data[i] = data[i]/datasum
 #for n in sys.argv
 
-							with open ('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.normalized.txt', 'w') as g, open('/Users/obawany/Desktop/GItHub Repositories/Normalizing-data-using-python//3f42ef68-68d9-428b-be89-48da95336f3e.htseq.counts.txt') as f:
+							with open (file_name + '.normalized.txt', 'w') as g, open(file_path, 'r') as f:
 
 								#to sum all the values of that file/experiment 	
 								sumofvalues = 0
@@ -153,5 +153,3 @@ for cancertype in cancertypes:
 
 							#data = data/data[600]
 							#np.savetxt('new.txt', data)
-
-
