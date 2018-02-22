@@ -37,13 +37,13 @@ for cancertype in cancertypes:
 						#print(experiment_path)
 						if not experiment_path.endswith('.txt'):
 							files_in_exp = os.listdir(experiment_path)
-	#						print(files_in_exp)
+#							print(files_in_exp)
 							#print(files_in_exp[0])
 							file_name = files_in_exp[0]
 							#print(file_name)
 							if file_name.endswith('.quantification.txt'):
 								file_path = experiment_path + "/" + file_name
-							#	print(file_path)
+								print(file_path)
 				# for gender_folder in path_to_male_female:
 				# 	if gender_folder != '.DS_Store':
 				# 		experiments_path = path_inside_canner + "/" + gender_folder
@@ -107,7 +107,7 @@ for cancertype in cancertypes:
 	# 	data[i] = data[i]/datasum
 	# for n in sys.argv
 
-								with open (experiment_path + file_name + '.normalized.txt', 'w') as g, open(file_path, 'r') as f:
+								with open (experiment_path + "/" + file_name + '.normalized.txt', 'w') as g, open(file_path, 'r') as f:
 
 									#to sum all the values of that file/experiment 	
 									sumofvalues = 0
